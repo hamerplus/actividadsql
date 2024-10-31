@@ -1,0 +1,40 @@
+create database GestionEventos;
+use GestionEventos;
+
+create table eventos (id_eventos int primary key, 
+nombre_evento varchar(50), 
+feche_de_inicio date, fecha_de_fin date, 
+ubicación varchar(50),
+categoria_de_evento varchar(50));
+
+create table eventosxorganizadores (id_eventos int ,
+id_organizadores int); 
+alter table eventosxorganizadores add 
+foreign key (id_eventos) references 
+eventos(id_eventos);
+alter table eventosxorganizadores add foreign key(id_organizadores)
+references organizadores(id_organizadores);
+
+create table organizadores (id_organizadores int primary key,
+nombre_organizador varchar(50), correo_electronico varchar(50),
+numero_de_telefono int);
+
+create table eventosxasistentes (id_eventos int, 
+id_asistentes int); alter table eventosxasistentes add foreign key(id_eventos) 
+references eventos(id_eventos);
+alter table eventosxasistentes add foreign key (id_asistentes) references 
+asistentes(id_asistentes);
+
+
+create table asistentes (id_asistentes int primary key, 
+nombre varchar(50), correo_electronico varchar(45),
+telefono int); 
+
+/*todos los eventos y nombre del organizador*/
+select nombre_organizador,id_eventos,nombre_evento from organizadores,eventos;
+
+/*todos los asistentes de un evento*/
+select id_eventos,nombre_asistente from eventos,asistentes
+
+
+  
